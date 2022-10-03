@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../server/include/server.h
+iostream
+-
+sys/socket.h
+-
+sys/types.h
+-
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/server/main.cpp
+iostream
+-
+server.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/server/server.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/server/server.cpp
+server.h
+-
+

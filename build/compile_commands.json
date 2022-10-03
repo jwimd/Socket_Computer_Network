@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server",
+  "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/server/./include  -g   -o CMakeFiles/server.dir/main.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/server/main.cpp",
+  "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/server/main.cpp"
+},
+{
+  "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server",
+  "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/server/./include  -g   -o CMakeFiles/server.dir/server.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/server/server.cpp",
+  "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/server/server.cpp"
+},
+{
+  "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client",
+  "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/client/./include  -g   -o CMakeFiles/client.dir/client.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/client/client.cpp",
+  "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/code/client/client.cpp"
+}
+]

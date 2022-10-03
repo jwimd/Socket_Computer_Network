@@ -1,0 +1,8 @@
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/CMakeFiles/rebuild_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/CMakeFiles/edit_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/server/CMakeFiles/rebuild_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/server/CMakeFiles/edit_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/server/CMakeFiles/server.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/client/CMakeFiles/rebuild_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/client/CMakeFiles/edit_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/code/build/client/CMakeFiles/client.dir
