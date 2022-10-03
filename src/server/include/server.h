@@ -1,10 +1,10 @@
 /*
- * @Author: jwimd
+ * @Author: jwimd chenjiewei@zju.edu.cn
  * @Date: 2022-10-03 21:19:15
- * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
- * @LastEditTime: 2022-10-03 21:38:37
- * @FilePath: /code/server/include/server.h
- * @Description: socket服务端的头文件
+ * @LastEditors: jwimd chenjiewei@zju.edu.cn
+ * @LastEditTime: 2022-10-03 22:29:01
+ * @FilePath: /Socket_Computer_Network/src/server/include/server.h
+ * @Description: server头文件
  */
 
 #pragma once
