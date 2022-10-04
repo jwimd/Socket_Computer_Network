@@ -1,4 +1,12 @@
 /***
+ * @Descripttion:
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @Date: 2022-10-03 20:33:10
+ * @LastEditors: jwimd chenjiewei@zju.edu.cn
+ * @LastEditTime: 2022-10-04 22:00:26
+ * @FilePath: /Socket_Computer_Network/src/server/server.cpp
+ */
+/***
  * @Description: server类实现
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @Date: 2022-10-03 20:33:10
@@ -27,9 +35,12 @@
  * @param {int32_t} _domain
  * @param {int32_t} _type
  * @param {int32_t} _protocol
+ * @param {string} _server_addr
+ * @param {string} _server_port
+ * @param {int32_t} _backlog
  * @return {*}
  */
-Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _server_addr, std::string _server_port) : domain(_domain), type(_type), protocol(_protocol), server_addr(_server_addr), server_port(_server_port)
+Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _server_addr, std::string _server_port, int32_t _backlog) : domain(_domain), type(_type), protocol(_protocol), server_addr(_server_addr), server_port(_server_port), backlog(_backlog)
 {
     this->error_sign = false;
 
@@ -49,6 +60,13 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
         this->error_sign = true;
         return;
     }
+
+    if (listen(this->file_description, this->backlog) == -1)
+    {
+        this->error_sign = true;
+        return;
+    }
+
     return;
 }
 

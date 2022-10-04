@@ -1,4 +1,4 @@
-# Install script for directory: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src
+# Install script for directory: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,21 +37,3 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server/cmake_install.cmake")
-  include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client/cmake_install.cmake")
-  include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread/cmake_install.cmake")
-
-endif()
-
-if(CMAKE_INSTALL_COMPONENT)
-  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
-else()
-  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
-endif()
-
-string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
-       "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/${CMAKE_INSTALL_MANIFEST}"
-     "${CMAKE_INSTALL_MANIFEST_CONTENT}")

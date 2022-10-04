@@ -13,6 +13,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/CMakeLists.txt"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/CMakeLists.txt"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/CMakeLists.txt"
+  "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -45,10 +46,12 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "server/CMakeFiles/CMakeDirectoryInformation.cmake"
   "client/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "thread/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "server/CMakeFiles/server.dir/DependInfo.cmake"
   "client/CMakeFiles/client.dir/DependInfo.cmake"
+  "thread/CMakeFiles/thread.dir/DependInfo.cmake"
   )

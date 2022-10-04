@@ -6,23 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
-
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/server.h
-string
--
-sys/socket.h
--
-netinet/in.h
--
-type.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/type.h
-
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
-iostream
--
-sys/socket.h
--
-server.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
-
