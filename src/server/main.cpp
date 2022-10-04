@@ -1,5 +1,5 @@
 /***
- * @Descripttion: 服务器端主函数
+ * @Description: 服务器端主函数
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @Date: 2022-10-03 21:30:48
  * @LastEditors: jwimd chenjiewei@zju.edu.cn
@@ -11,13 +11,15 @@
 
 #include "server.h"
 
-/*
- * @description main for server
- * @return {int} 0
- * @param {int} argc
- * @param {char} *argv
+/***
+ * @Description:服务端主函数
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @param {int32_t} argc
+ * @param {char_t} *argv
+ * @return {int32_t} 0
  */
-int main(int argc, char *argv[])
+int32_t main(int32_t argc, char_t *argv[])
 {
     std::cout << "server!" << std::endl;
     return 0;

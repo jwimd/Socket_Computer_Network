@@ -1,5 +1,5 @@
 /***
- * @Descripttion: server类实现
+ * @Description: server类实现
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @Date: 2022-10-03 20:33:10
  * @LastEditors: jwimd chenjiewei@zju.edu.cn
@@ -7,6 +7,12 @@
  * @FilePath: /Socket_Computer_Network/src/server/server.cpp
  */
 
-#include <server.h>
+#include <iostream>
+#include <sys/socket.h>
+#include <sys/types.h>
+
+#include "server.h"
+#include "type.h"
+
 
 

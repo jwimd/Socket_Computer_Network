@@ -6,5 +6,5 @@ CXX_FLAGS = -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/./include 
+CXX_INCLUDES = -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/./include 
 

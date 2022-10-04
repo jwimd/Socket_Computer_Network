@@ -15,7 +15,8 @@
 		],
 		"files" : 
 		[
-			"server/CMakeLists.txt"
+			"server/CMakeLists.txt",
+			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -27,6 +28,15 @@
 				"file" : 0,
 				"line" : 5,
 				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 4,
+				"parent" : 2
 			},
 			{
 				"command" : 1,
@@ -48,7 +58,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
+					"path" : "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include"
+				},
+				{
+					"backtrace" : 4,
 					"path" : "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/./include"
 				}
 			],

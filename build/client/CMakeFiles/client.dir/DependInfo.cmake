@@ -10,6 +10,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/./include"
   )
 
