@@ -8,6 +8,7 @@
  */
 
 #include <iostream>
+#include <sys/socket.h>
 
 #include "server.h"
 
@@ -21,6 +22,15 @@
  */
 int32_t main(int32_t argc, char_t *argv[])
 {
-    std::cout << "server!" << std::endl;
+    Server my_server(AF_INET, SOCK_STREAM, IPPROTO_TCP, "127.0.0.1", "1205"); //启动socket服务
+    Server *p_server = &my_server;
+
+    if (p_server->error_sign)
+    {
+        std::cout << "Error in creating socket!" << std::endl;
+        return 0;
+    }
+
+    std::cout << "Hello server!" << std::endl;
     return 0;
 }

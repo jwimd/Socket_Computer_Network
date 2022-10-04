@@ -9,11 +9,11 @@
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/server.h
-iostream
+string
 -
 sys/socket.h
 -
-sys/types.h
+netinet/in.h
 -
 type.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/type.h
@@ -21,10 +21,8 @@ type.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
 iostream
 -
+sys/socket.h
+-
 server.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
-
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
-server.h
--
 
