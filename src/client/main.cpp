@@ -7,9 +7,8 @@
  * @FilePath: /Socket_Computer_Network/src/client/main.cpp
  */
 
-#include <iostream>
-
 #include "type.h"
+#include "client.h"
 
 /***
  * @Descripttion: 客户端主函数
@@ -21,6 +20,14 @@
  */
 int32_t main(int32_t argc, char_t *argv[])
 {
-    std::cout << "client!" << std::endl;
+    Client my_client(AF_INET, SOCK_STREAM, IPPROTO_TCP); //启动socket服务
+    Client *p_client = &my_client;
+
+    if (p_client->is_error())
+    {
+        std::cout << "套接字创建异常!" << std::endl;
+        return 0;
+    }
+
     return 0;
 }

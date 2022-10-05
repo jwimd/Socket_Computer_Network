@@ -8,9 +8,17 @@
  */
 #pragma once
 
+#include <iostream>
 #include <thread>
 #include <memory>
 #include <functional>
+
+#include <sys/types.h>
+#include <sys/socket.h>
+
+#include "type.h"
+
+#define MSG_LEN 200
 
 class Server;
 class Client;

@@ -13,10 +13,12 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <map>
 
 #include <strings.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <curses.h>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -32,17 +34,17 @@ class Client
 {
 public:
     Client() = delete;
-    Client(int32_t _domain, int32_t _type, int32_t _protocol, std::string _client_addr, std::string _client_port, int32_t _backlog);
+    Client(int32_t _domain, int32_t _type, int32_t _protocol);
     ~Client();
 
     inline bool_t is_error() { return this->error_sign; }
-
-    void main_thread_run(int32_t _file_description);
 
 protected:
     int32_t domain;   //协议簇
     int32_t type;     //套接字类型
     int32_t protocol; //指定协议
+
+    int32_t file_description; //文件描述符
 
     std::string server_addr; //服务地址
     std::string server_port; //端口
@@ -51,10 +53,16 @@ protected:
 
     bool_t is_connected; //是否与服务端建立连接
 
-    std::shared_ptr<Client_Thread> main_thread;                   //主线程
-    std::vector<std::shared_ptr<Client_Thread>> sub_thread_group; //子线程
+    std::shared_ptr<Client_Thread> main_thread;                                 //主线程
+    std::map<std::thread::id, std::shared_ptr<Client_Thread>> sub_thread_group; //子线程
 
     bool_t error_sign; //指示Client类出现问题的标志
 
+    void main_thread_run(int32_t _file_description);
+
     void main_thread_process();
+
+    void connect_to_server();
+
+    void client_receive_process();
 };

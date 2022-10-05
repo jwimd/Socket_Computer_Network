@@ -45,7 +45,7 @@ void Thread::join()
     return;
 }
 
-/*** 
+/***
  * @Description: 纯虚函数体
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
@@ -56,8 +56,8 @@ Thread::~Thread()
     return;
 }
 
-/*** 
- * @Description: 
+/***
+ * @Description:
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
  * @param {int32_t} _file_description
@@ -68,8 +68,8 @@ Server_Thread::Server_Thread(int32_t _file_description) : file_description(_file
     return;
 }
 
-/*** 
- * @Description: 
+/***
+ * @Description:
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
  * @return {*}
@@ -79,8 +79,8 @@ Server_Thread::~Server_Thread()
     return;
 }
 
-/*** 
- * @Description: 
+/***
+ * @Description:
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
  * @param {int32_t} _file_description
@@ -91,8 +91,8 @@ Client_Thread::Client_Thread(int32_t _file_description) : file_description(_file
     return;
 }
 
-/*** 
- * @Description: 
+/***
+ * @Description:
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
  * @return {*}

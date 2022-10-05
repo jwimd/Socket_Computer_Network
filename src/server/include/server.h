@@ -13,6 +13,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <map>
 
 #include <strings.h>
 #include <unistd.h>
@@ -36,23 +37,30 @@ public:
 
     inline bool_t is_error() { return this->error_sign; }
 
-    void main_thread_run(int32_t _file_description);
-
 protected:
     int32_t domain;   //协议簇
     int32_t type;     //套接字类型
     int32_t protocol; //指定协议
     int32_t backlog;  //最多允许的并发数
 
+    int32_t file_description; //文件描述符
+
     std::string server_addr; //服务地址
     std::string server_port; //端口
 
-    sockaddr_in sock_addr;    // sockaddr结构体的指针'
+    sockaddr_in sock_addr; // sockaddr结构体的指针'
 
-    std::shared_ptr<Server_Thread> main_thread;                   //主线程
-    std::vector<std::shared_ptr<Server_Thread>> sub_thread_group; //子线程
+    std::shared_ptr<Server_Thread> main_thread;                                 //主线程
+    std::map<std::thread::id, std::shared_ptr<Server_Thread>> sub_thread_group; //子线程
+
+    std::vector<int32_t> client_fd;
+    std::vector<sockaddr_in> client_addr;
 
     bool_t error_sign; //指示Server类出现问题的标志
 
+    void main_thread_run(int32_t _file_description);
+
     void main_thread_process();
+
+    void server_sub_process();
 };

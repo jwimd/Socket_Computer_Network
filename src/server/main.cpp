@@ -15,9 +15,6 @@
  * @FilePath: /Socket_Computer_Network/src/server/main.cpp
  */
 
-#include <iostream>
-#include <sys/socket.h>
-
 #include "server.h"
 
 /***
@@ -35,7 +32,7 @@ int32_t main(int32_t argc, char_t *argv[])
 
     if (p_server->is_error())
     {
-        std::cout << "Error in creating socket!" << std::endl;
+        std::cout << "套接字创建异常!!" << std::endl;
         return 0;
     }
     

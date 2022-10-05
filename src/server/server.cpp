@@ -24,25 +24,27 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
 {
     this->error_sign = false;
 
-    int32_t file_description = -1;
+    int32_t _file_description = -1;
 
-    if ((file_description = socket(this->domain, this->type, this->protocol)) == -1) //生成socket句柄
+    if ((_file_description = socket(this->domain, this->type, this->protocol)) == -1) //生成socket句柄
     {
         this->error_sign = true;
         return;
     }
+
+    this->file_description = _file_description;
 
     this->sock_addr.sin_family = AF_INET;                                   // ipv4地址类型
     this->sock_addr.sin_addr.s_addr = inet_addr(this->server_addr.c_str()); //绑定地址
     this->sock_addr.sin_port = htons(stoi(this->server_port));              //绑定端口
 
-    if (bind(file_description, (struct sockaddr *)&this->sock_addr, sizeof(struct sockaddr)) == -1) //绑定端口号和地址
+    if (bind(_file_description, (struct sockaddr *)&this->sock_addr, sizeof(struct sockaddr)) == -1) //绑定端口号和地址
     {
         this->error_sign = true;
         return;
     }
 
-    if (listen(file_description, this->backlog) == -1)
+    if (listen(_file_description, this->backlog) == -1)
     {
         this->error_sign = true;
         return;
@@ -84,7 +86,42 @@ void Server::main_thread_process()
 
         if (client_file_description = accept(this->main_thread->get_file_description(), (sockaddr *)&client_addr, &sock_len) != -1) // accept接受客户端请求
         {
-            std::cout << "get require!" << std::endl;
+            std::cout << "收到请求" << std::endl;
+
+            this->client_fd.push_back(client_file_description);
+            this->client_addr.push_back(client_addr);
+
+            std::shared_ptr<Server_Thread>
+                new_thread(new Server_Thread(client_file_description)); //创建子线程
+            new_thread->run(*this, &Server::server_sub_process);
+            this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
+        }
+    }
+
+    return;
+}
+
+/*** 
+ * @Description: 服务端子线程函数
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+void Server::server_sub_process()
+{
+    char_t *msg = NULL;
+    int32_t msg_len = MSG_LEN;
+    while(1)
+    {
+        if (recv(this->sub_thread_group[std::this_thread::get_id()]->get_file_description(), msg, msg_len, 0) == -1)
+        {
+            std::cout << "在接收数据包时发生错误！" << std::endl;
+            continue;
+        }
+        
+        else
+        {
+            std::cout << msg << std::endl;
         }
     }
 
