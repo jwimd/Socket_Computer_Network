@@ -87,21 +87,21 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "client::@b0c487aac068df482bf0",
-					"jsonFile" : "target-client-Debug-a7bb36f905b2c71f063e.json",
+					"jsonFile" : "target-client-Debug-8955dfd566751c08a993.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "server::@d19778d2e34a1e3ddfc0",
-					"jsonFile" : "target-server-Debug-bceb0300dbabdac401a1.json",
+					"jsonFile" : "target-server-Debug-7eaf08f263f83850e3ec.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "thread::@1994991b6c1bd8685afc",
-					"jsonFile" : "target-thread-Debug-3e37987433e21573583f.json",
+					"jsonFile" : "target-thread-Debug-cddb2f01e93d2c65924e.json",
 					"name" : "thread",
 					"projectIndex" : 0
 				}

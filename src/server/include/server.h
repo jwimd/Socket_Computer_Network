@@ -10,12 +10,15 @@
 #pragma once
 
 #include <string>
+#include <thread>
+#include <vector>
 
 #include <sys/socket.h>
 
 #include <netinet/in.h>
 
 #include "type.h"
+#include "thread.h"
 
 class Server
 {
@@ -24,7 +27,7 @@ public:
     Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _server_addr, std::string _server_port, int32_t _backlog);
     ~Server();
 
-    inline bool is_error() { return this->error_sign; }
+    inline bool_t is_error() { return this->error_sign; }
 
 protected:
     int32_t domain;   //协议簇
@@ -36,7 +39,10 @@ protected:
     std::string server_port; //端口
 
     int32_t file_description; // socket文件描述符
-    sockaddr_in sock_addr;    // sockaddr结构体的指针
+    sockaddr_in sock_addr;    // sockaddr结构体的指针'
 
-    bool error_sign; //指示Server类出现问题的标志
+    Server_Thread main_thread;                   //主线程
+    std::vector<Server_Thread> sub_thread_group; //子线程
+
+    bool_t error_sign; //指示Server类出现问题的标志
 };

@@ -1,6 +1,6 @@
-include_directories(./include)
-
 aux_source_directory(. SERVER_SRCS)
+
+include_directories(./include)
 
 add_executable(server ${SERVER_SRCS})
 
