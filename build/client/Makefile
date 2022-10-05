@@ -125,6 +125,33 @@ client/fast:
 	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/build
 .PHONY : client/fast
 
+client.o: client.cpp.o
+
+.PHONY : client.o
+
+# target to build an object file
+client.cpp.o:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/client.cpp.o
+.PHONY : client.cpp.o
+
+client.i: client.cpp.i
+
+.PHONY : client.i
+
+# target to preprocess a source file
+client.cpp.i:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/client.cpp.i
+.PHONY : client.cpp.i
+
+client.s: client.cpp.s
+
+.PHONY : client.s
+
+# target to generate assembly for a file
+client.cpp.s:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/client.cpp.s
+.PHONY : client.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -161,6 +188,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... client"
+	@echo "... client.o"
+	@echo "... client.i"
+	@echo "... client.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

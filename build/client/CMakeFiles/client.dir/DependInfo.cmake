@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/client.cpp" "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client/CMakeFiles/client.dir/client.cpp.o"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp" "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client/CMakeFiles/client.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

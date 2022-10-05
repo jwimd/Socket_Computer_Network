@@ -13,16 +13,19 @@
 #include <functional>
 
 class Server;
+class Client;
 
 typedef void (Server::*server_void_func)();
+typedef void (Client::*client_void_func)();
 
 class Thread
 {
 public:
-    Thread() { return; }
-    ~Thread() { return; } //抽象父基类
+    Thread() { return; };
+    virtual ~Thread() = 0; //抽象父基类
 
-    void run(Server& _server, server_void_func _func);
+    void run(Server &_server, server_void_func _func);
+    void run(Client &_client, client_void_func _func);
 
     void join();
 
@@ -32,11 +35,25 @@ protected:
     std::shared_ptr<std::thread> p_thread;
 };
 
-class Server_Thread: virtual public Thread
+class Server_Thread : virtual public Thread
 {
 public:
     Server_Thread(int32_t _file_description);
     ~Server_Thread();
+
+    int32_t get_file_description() { return this->file_description; }
+
+protected:
+    int32_t file_description; // 该线程所控制的socket文件描述符
+};
+
+class Client_Thread : virtual public Thread
+{
+public:
+    Client_Thread(int32_t _file_description);
+    ~Client_Thread();
+
+    int32_t get_file_description() { return this->file_description; }
 
 protected:
     int32_t file_description; // 该线程所控制的socket文件描述符

@@ -53,7 +53,7 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
     return;
 }
 
-/*** 
+/***
  * @Description: 启动服务端主线程
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
@@ -78,8 +78,14 @@ void Server::main_thread_process()
 {
     while (1)
     {
-        std::cout << "Main Thread Run!" << std::endl;
-        sleep(1);
+        int32_t client_file_description = -1;
+        struct sockaddr_in client_addr;
+        socklen_t sock_len = sizeof(client_addr);
+
+        if (client_file_description = accept(this->main_thread->get_file_description(), (sockaddr *)&client_addr, &sock_len) != -1) // accept接受客户端请求
+        {
+            std::cout << "get require!" << std::endl;
+        }
     }
 
     return;

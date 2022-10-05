@@ -6,11 +6,43 @@
 
 #IncludeRegexTransform: 
 
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/client.cpp
+client.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/client.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/client.h
 iostream
 -
+string
+-
+thread
+-
+vector
+-
+strings.h
+-
+unistd.h
+-
+sys/socket.h
+-
+sys/types.h
+-
+arpa/inet.h
+-
+netinet/in.h
+-
 type.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/type.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/type.h
+thread.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/thread.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/include/thread.h
+thread
+-
+memory
+-
+functional
+-
 

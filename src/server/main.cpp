@@ -38,9 +38,6 @@ int32_t main(int32_t argc, char_t *argv[])
         std::cout << "Error in creating socket!" << std::endl;
         return 0;
     }
-
-    std::cout << "Hello server!" << std::endl;
-
     
     return 0;
 }
