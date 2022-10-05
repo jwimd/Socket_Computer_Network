@@ -33,6 +33,8 @@ Client::Client(int32_t _domain, int32_t _type, int32_t _protocol, std::string _c
         return;
     }
 
+    this->is_connected = false;
+
     this->main_thread_run(file_description);
 
     return;
@@ -63,13 +65,61 @@ void Client::main_thread_process()
 {
     while (1)
     {
-        system("cls");
+        system("cls"); //清空输出
+
+        if (this->is_connected)
+        {
+            std::cout << "当前状态：未连接服务端" << std::endl;
+            std::cout << "操作:" << std::endl;
+            std::cout << "[1] 连接服务端" << std::endl;
+            std::cout << "[2] 断开连接" << std::endl;
+            std::cout << "[3] 获取时间" << std::endl;
+            std::cout << "[4] 获取名字" << std::endl;
+            std::cout << "[5] 获取客户端列表" << std::endl;
+            std::cout << "[6] 发送消息" << std::endl;
+            std::cout << "[7] 退出客户端" << std::endl;
+
+            int32_t opera_code = getchar() - '0';
+
+            switch (opera_code)
+            {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+
+            default:
+                std::cout << "未定义的输入！" << std::endl;
+                break;
+            }
+        }
+
+        else
+        {
+            std::cout << "当前状态：未连接服务端" << std::endl;
+            std::cout << "操作:" << std::endl;
+            std::cout << "[1] 连接服务端" << std::endl;
+            std::cout << "[2] 退出客户端" << std::endl;
+
+            char_t opera_code = getchar();
+
+        }
     }
 
     return;
 }
 
-/*** 
+/***
  * @Description: Client类析构函数
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None

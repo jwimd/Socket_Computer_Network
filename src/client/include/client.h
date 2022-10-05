@@ -44,6 +44,13 @@ protected:
     int32_t type;     //套接字类型
     int32_t protocol; //指定协议
 
+    std::string server_addr; //服务地址
+    std::string server_port; //端口
+
+    sockaddr_in sock_addr; // sockaddr结构体的指针
+
+    bool_t is_connected; //是否与服务端建立连接
+
     std::shared_ptr<Client_Thread> main_thread;                   //主线程
     std::vector<std::shared_ptr<Client_Thread>> sub_thread_group; //子线程
 
