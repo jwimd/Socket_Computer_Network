@@ -15,9 +15,9 @@
  * @msg: None
  * @return {*}
  */
-void Thread::run(Server& _server, server_void_func _func)
+void Thread::run(Server &_server, server_void_func _func)
 {
-    this->p_thread = std::shared_ptr<std::thread>(new std::thread(std::bind(_func,&_server)));
+    this->p_thread = std::shared_ptr<std::thread>(new std::thread(std::bind(_func, &_server)));
     return;
 }
 
@@ -30,5 +30,15 @@ void Thread::run(Server& _server, server_void_func _func)
 void Thread::join()
 {
     this->p_thread->join();
+    return;
+}
+
+Server_Thread::Server_Thread(int32_t _file_description) : file_description(_file_description)
+{
+    return;
+}
+
+Server_Thread::~Server_Thread()
+{
     return;
 }

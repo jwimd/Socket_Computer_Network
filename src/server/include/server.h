@@ -15,6 +15,7 @@
 #include <vector>
 
 #include <strings.h>
+#include <unistd.h>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -35,7 +36,7 @@ public:
 
     inline bool_t is_error() { return this->error_sign; }
 
-    void main_thread_run();
+    void main_thread_run(int32_t _file_description);
 
 protected:
     int32_t domain;   //协议簇
@@ -46,7 +47,6 @@ protected:
     std::string server_addr; //服务地址
     std::string server_port; //端口
 
-    int32_t file_description; // socket文件描述符
     sockaddr_in sock_addr;    // sockaddr结构体的指针'
 
     std::shared_ptr<Server_Thread> main_thread;                   //主线程

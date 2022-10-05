@@ -19,6 +19,8 @@ vector
 -
 strings.h
 -
+unistd.h
+-
 sys/socket.h
 -
 sys/types.h
@@ -32,21 +34,17 @@ type.h
 thread.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/thread.h
 
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
-server.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
 iostream
--
-string
--
-strings.h
 -
 sys/socket.h
 -
-sys/types.h
--
-arpa/inet.h
--
+server.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
+server.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/include/thread.h
 thread

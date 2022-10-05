@@ -19,8 +19,8 @@ typedef void (Server::*server_void_func)();
 class Thread
 {
 public:
-    Thread() = delete;
-    virtual ~Thread() = 0; //抽象父基类
+    Thread() { return; }
+    ~Thread() { return; } //抽象父基类
 
     void run(Server& _server, server_void_func _func);
 
@@ -35,8 +35,9 @@ protected:
 class Server_Thread: virtual public Thread
 {
 public:
-    
+    Server_Thread(int32_t _file_description);
+    ~Server_Thread();
 
 protected:
-
+    int32_t file_description; // 该线程所控制的socket文件描述符
 };
