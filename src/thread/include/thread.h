@@ -6,7 +6,15 @@
  * @LastEditTime: 2022-10-05 10:12:21
  * @FilePath: /Socket_Computer_Network/thread/include/thread.h
  */
+#pragma once
+
 #include <thread>
+#include <memory>
+#include <functional>
+
+class Server;
+
+typedef void (Server::*server_void_func)();
 
 class Thread
 {
@@ -14,10 +22,14 @@ public:
     Thread() = delete;
     virtual ~Thread() = 0; //抽象父基类
 
-    std::thread* get_thread() { return &this->thread; }
+    void run(Server& _server, server_void_func _func);
+
+    void join();
+
+    inline std::shared_ptr<std::thread> get_thread() { return this->p_thread; }
 
 protected:
-    std::thread thread;
+    std::shared_ptr<std::thread> p_thread;
 };
 
 class Server_Thread: virtual public Thread

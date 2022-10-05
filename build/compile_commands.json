@@ -1,5 +1,10 @@
 [
 {
+  "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread",
+  "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./server/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./client/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./thread/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/./include  -g   -o CMakeFiles/thread.dir/thread.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/thread.cpp",
+  "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/thread.cpp"
+},
+{
   "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server",
   "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./server/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./client/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./thread/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/./include  -g   -o CMakeFiles/server.dir/main.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp",
   "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp"
@@ -13,10 +18,5 @@
   "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client",
   "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./server/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./client/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./thread/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/./include  -g   -o CMakeFiles/client.dir/main.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp",
   "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp"
-},
-{
-  "directory": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread",
-  "command": "/usr/bin/g++   -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./server/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./client/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./thread/include -I/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/./include  -g   -o CMakeFiles/thread.dir/thread.cpp.o -c /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/thread.cpp",
-  "file": "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/thread.cpp"
 }
 ]

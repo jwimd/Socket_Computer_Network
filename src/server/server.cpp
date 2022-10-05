@@ -14,19 +14,7 @@
  * @LastEditTime: 2022-10-04 10:19:00
  * @FilePath: /Socket_Computer_Network/src/server/server.cpp
  */
-
-#include <iostream>
-#include <string>
-
-#include <strings.h>
-
-#include <sys/socket.h>
-#include <sys/types.h>
-
-#include <arpa/inet.h>
-
 #include "server.h"
-#include "type.h"
 
 /***
  * @Description: Server类可使用的构造函数，执行初始化socket
@@ -49,8 +37,16 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
         this->error_sign = true;
         return;
     }
+#include <iostream>
+#include <string>
 
-    bzero(&this->sock_addr, sizeof(this->sock_addr));                       //清空结构体
+#include <strings.h>
+
+#include <sys/socket.h>
+#include <sys/types.h>
+
+#include <arpa/inet.h>
+
     this->sock_addr.sin_family = AF_INET;                                   // ipv4地址类型
     this->sock_addr.sin_addr.s_addr = inet_addr(this->server_addr.c_str()); //绑定地址
     this->sock_addr.sin_port = htons(stoi(this->server_port));              //绑定端口
@@ -68,6 +64,28 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
     }
 
     return;
+}
+
+/*** 
+ * @Description: 主线程挂载运行
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+void Server::main_thread_run()
+{
+    this->main_thread->run(*this, &Server::main_thread_process);
+    return;
+}
+
+/***
+ * @Description: 主线程执行的函数
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+void Server::main_thread_process()
+{
 }
 
 /***

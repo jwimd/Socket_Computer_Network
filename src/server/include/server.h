@@ -9,11 +9,17 @@
 
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <thread>
 #include <vector>
 
+#include <strings.h>
+
 #include <sys/socket.h>
+#include <sys/types.h>
+
+#include <arpa/inet.h>
 
 #include <netinet/in.h>
 
@@ -29,6 +35,8 @@ public:
 
     inline bool_t is_error() { return this->error_sign; }
 
+    void main_thread_run();
+
 protected:
     int32_t domain;   //协议簇
     int32_t type;     //套接字类型
@@ -41,8 +49,10 @@ protected:
     int32_t file_description; // socket文件描述符
     sockaddr_in sock_addr;    // sockaddr结构体的指针'
 
-    Server_Thread main_thread;                   //主线程
-    std::vector<Server_Thread> sub_thread_group; //子线程
+    std::shared_ptr<Server_Thread> main_thread;                   //主线程
+    std::vector<std::shared_ptr<Server_Thread>> sub_thread_group; //子线程
 
     bool_t error_sign; //指示Server类出现问题的标志
+
+    void main_thread_process();
 };

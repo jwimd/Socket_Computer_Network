@@ -4,6 +4,9 @@ include_directories(./include)
 
 add_executable(server ${SERVER_SRCS})
 
+find_package(Threads REQUIRED)
+
 target_link_libraries(server
     thread
+    Threads::Threads
 )

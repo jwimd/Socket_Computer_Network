@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread/cmake_install.cmake")
   include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server/cmake_install.cmake")
   include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client/cmake_install.cmake")
-  include("/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread/cmake_install.cmake")
 
 endif()
 

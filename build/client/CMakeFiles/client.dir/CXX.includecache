@@ -6,3 +6,11 @@
 
 #IncludeRegexTransform: 
 
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp
+iostream
+-
+type.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/type.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
+

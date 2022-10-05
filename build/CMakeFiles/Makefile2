@@ -53,23 +53,23 @@ CMAKE_BINARY_DIR = /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_N
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: thread/all
 all: server/all
 all: client/all
-all: thread/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
+preinstall: thread/preinstall
 preinstall: server/preinstall
 preinstall: client/preinstall
-preinstall: thread/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: thread/clean
 clean: server/clean
 clean: client/clean
-clean: thread/clean
 
 .PHONY : clean
 
@@ -128,6 +128,33 @@ thread/clean: thread/CMakeFiles/thread.dir/clean
 .PHONY : thread/clean
 
 #=============================================================================
+# Target rules for target thread/CMakeFiles/thread.dir
+
+# All Build rule for target.
+thread/CMakeFiles/thread.dir/all:
+	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/depend
+	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles --progress-num=6,7 "Built target thread"
+.PHONY : thread/CMakeFiles/thread.dir/all
+
+# Build rule for subdir invocation for target.
+thread/CMakeFiles/thread.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 thread/CMakeFiles/thread.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles 0
+.PHONY : thread/CMakeFiles/thread.dir/rule
+
+# Convenience name for target.
+thread: thread/CMakeFiles/thread.dir/rule
+
+.PHONY : thread
+
+# clean rule for target.
+thread/CMakeFiles/thread.dir/clean:
+	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/clean
+.PHONY : thread/CMakeFiles/thread.dir/clean
+
+#=============================================================================
 # Target rules for target server/CMakeFiles/server.dir
 
 # All Build rule for target.
@@ -180,33 +207,6 @@ client: client/CMakeFiles/client.dir/rule
 client/CMakeFiles/client.dir/clean:
 	$(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/clean
 .PHONY : client/CMakeFiles/client.dir/clean
-
-#=============================================================================
-# Target rules for target thread/CMakeFiles/thread.dir
-
-# All Build rule for target.
-thread/CMakeFiles/thread.dir/all:
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/depend
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles --progress-num=6,7 "Built target thread"
-.PHONY : thread/CMakeFiles/thread.dir/all
-
-# Build rule for subdir invocation for target.
-thread/CMakeFiles/thread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 thread/CMakeFiles/thread.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles 0
-.PHONY : thread/CMakeFiles/thread.dir/rule
-
-# Convenience name for target.
-thread: thread/CMakeFiles/thread.dir/rule
-
-.PHONY : thread
-
-# clean rule for target.
-thread/CMakeFiles/thread.dir/clean:
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/clean
-.PHONY : thread/CMakeFiles/thread.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

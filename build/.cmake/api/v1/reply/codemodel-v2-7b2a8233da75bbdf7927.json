@@ -20,6 +20,20 @@
 					"source" : "."
 				},
 				{
+					"build" : "thread",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "thread",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
 					"build" : "server",
 					"minimumCMakeVersion" : 
 					{
@@ -46,20 +60,6 @@
 					[
 						0
 					]
-				},
-				{
-					"build" : "thread",
-					"minimumCMakeVersion" : 
-					{
-						"string" : "3.0.0"
-					},
-					"parentIndex" : 0,
-					"projectIndex" : 0,
-					"source" : "thread",
-					"targetIndexes" : 
-					[
-						2
-					]
 				}
 			],
 			"name" : "Debug",
@@ -85,21 +85,21 @@
 			"targets" : 
 			[
 				{
-					"directoryIndex" : 2,
+					"directoryIndex" : 3,
 					"id" : "client::@b0c487aac068df482bf0",
-					"jsonFile" : "target-client-Debug-8955dfd566751c08a993.json",
+					"jsonFile" : "target-client-Debug-ce293cddffbb20bcf966.json",
 					"name" : "client",
 					"projectIndex" : 0
 				},
 				{
-					"directoryIndex" : 1,
+					"directoryIndex" : 2,
 					"id" : "server::@d19778d2e34a1e3ddfc0",
-					"jsonFile" : "target-server-Debug-7eaf08f263f83850e3ec.json",
+					"jsonFile" : "target-server-Debug-72d310709709c0e31726.json",
 					"name" : "server",
 					"projectIndex" : 0
 				},
 				{
-					"directoryIndex" : 3,
+					"directoryIndex" : 1,
 					"id" : "thread::@1994991b6c1bd8685afc",
 					"jsonFile" : "target-thread-Debug-cddb2f01e93d2c65924e.json",
 					"name" : "thread",

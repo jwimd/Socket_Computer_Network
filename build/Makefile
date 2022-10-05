@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named thread
+
+# Build rule for target.
+thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 thread
+.PHONY : thread
+
+# fast build rule for target.
+thread/fast:
+	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
+.PHONY : thread/fast
+
+#=============================================================================
 # Target rules for targets named server
 
 # Build rule for target.
@@ -136,19 +149,6 @@ client/fast:
 	$(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/build
 .PHONY : client/fast
 
-#=============================================================================
-# Target rules for targets named thread
-
-# Build rule for target.
-thread: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 thread
-.PHONY : thread
-
-# fast build rule for target.
-thread/fast:
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
-.PHONY : thread/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -157,9 +157,9 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... thread"
 	@echo "... server"
 	@echo "... client"
-	@echo "... thread"
 .PHONY : help
 
 
