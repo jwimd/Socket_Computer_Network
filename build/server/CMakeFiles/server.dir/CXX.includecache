@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/data.h
+stdio.h
+-
+string.h
+-
+type.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/type.h
+
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/server.h
@@ -23,6 +31,8 @@ strings.h
 -
 unistd.h
 -
+errno.h
+-
 sys/socket.h
 -
 sys/types.h
@@ -35,10 +45,8 @@ type.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/type.h
 thread.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/thread.h
-
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
-server.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
+data.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/data.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
 server.h
