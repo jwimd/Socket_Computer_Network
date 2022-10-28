@@ -8,5 +8,6 @@ find_package(Threads REQUIRED)
 
 target_link_libraries(client
     thread
+    data
     Threads::Threads
 )

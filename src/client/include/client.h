@@ -14,6 +14,9 @@
 #include <thread>
 #include <vector>
 #include <map>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
 
 #include <strings.h>
 #include <unistd.h>
@@ -29,6 +32,8 @@
 
 #include "type.h"
 #include "thread.h"
+
+#include "data.h"
 
 class Client
 {
@@ -58,6 +63,10 @@ protected:
 
     bool_t error_sign; //指示Client类出现问题的标志
 
+    std::queue<std::string> message_quene; //通信队列
+    std::mutex message_quene_mutex;        //线程锁
+   
+
     void main_thread_run(int32_t _file_description);
 
     void main_thread_process();
@@ -65,4 +74,6 @@ protected:
     void connect_to_server();
 
     void client_receive_process();
+
+    void print_process();
 };

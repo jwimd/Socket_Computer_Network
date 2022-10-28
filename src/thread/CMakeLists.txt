@@ -7,5 +7,6 @@ add_library(thread ${THREAD_SRCS})
 find_package(Threads REQUIRED)
 
 target_link_libraries(thread
+    data
     Threads::Threads
 )

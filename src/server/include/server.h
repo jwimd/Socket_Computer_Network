@@ -17,6 +17,7 @@
 
 #include <strings.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -27,6 +28,8 @@
 
 #include "type.h"
 #include "thread.h"
+
+#include "data.h"
 
 class Server
 {

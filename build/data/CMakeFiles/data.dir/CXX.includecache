@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/data.cpp
+data.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/data.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/data.h
+stdio.h
+-
+string.h
+-
+type.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/type.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
+

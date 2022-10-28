@@ -68,6 +68,10 @@ void Client::main_thread_run(int32_t _file_description)
  */
 void Client::main_thread_process()
 {
+    std::shared_ptr<Client_Thread> new_thread(new Client_Thread(this->file_description)); //创建子线程
+    new_thread->run(*this, &Client::print_process);
+    this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
+
     while (1)
     {
         system("clear"); //清空输出
@@ -90,11 +94,15 @@ void Client::main_thread_process()
             int32_t _opera_code = 0;
             std::cin >> _opera_code;
 
+            std::cout << std::endl;
+            std::cout << "消息：" << std::endl;
+
             switch (_opera_code)
             {
             case 1:
                 break;
             case 2:
+
                 break;
             case 3:
                 break;
@@ -105,10 +113,11 @@ void Client::main_thread_process()
             case 6:
                 break;
             case 7:
-                std::cout << "未定义的命令！" << std::endl;
                 break;
 
             default:
+                std::cout << "未定义的命令！" << std::endl;
+                sleep(2);
                 break;
             }
         }
@@ -139,11 +148,12 @@ void Client::main_thread_process()
 
             default:
                 std::cout << "未定义的命令！" << std::endl;
+                sleep(2);
                 break;
             }
         }
 
-        sleep(3);
+        // sleep(2);
     }
 
     return;
@@ -173,6 +183,7 @@ void Client::connect_to_server()
         std::shared_ptr<Client_Thread> new_thread(new Client_Thread(this->file_description)); //创建子线程
         new_thread->run(*this, &Client::client_receive_process);
         this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
+        this->is_connected = true;
     }
 }
 
@@ -184,18 +195,78 @@ void Client::connect_to_server()
  */
 void Client::client_receive_process()
 {
+    char_t _pack[MSG_LEN] = {0}; //数据包
+    int32_t _msg_len = MSG_LEN;
+
+    int32_t _file_description = this->sub_thread_group[std::this_thread::get_id()]->get_file_description();
     while (1)
     {
-        char_t *msg = NULL;
-        int32_t msg_len = MSG_LEN;
-        if (recv(this->sub_thread_group[std::this_thread::get_id()]->get_file_description(), msg, msg_len, 0) == -1)
+
+        if (recv(_file_description, _pack, _msg_len, 0) == -1)
         {
             std::cout << "在接收数据包时发生错误！" << std::endl;
             continue;
         }
         else
         {
-            std::cout << msg << std::endl;
+            int32_t _require_type = 0;
+            int32_t _message_type = 0;
+
+            char_t _msg[MSG_LEN] = {0};
+            std::string _msg_str = "";
+
+            if (unpack_data(_require_type, _message_type, _msg, _msg_len, _pack))
+            {
+                _msg_str = _msg;
+                switch (_require_type)
+                {
+                case 1:                     //请求
+                    if (_message_type == 1) //时间
+                    {
+                    }
+                    if (_message_type == 2) //名称
+                    {
+                    }
+                    if (_message_type == 3) //消息
+                    {
+                    }
+                    if (_message_type == 4) //列表
+                    {
+                    }
+                    break;
+                case 2: //响应
+                    if (_message_type == 1)
+                    {
+                    }
+                    if (_message_type == 2) //名称
+                    {
+                    }
+                    if (_message_type == 3) //消息
+                    {
+                        this->message_quene_mutex.lock();
+                        this->message_quene.push(_msg);
+                        this->message_quene_mutex.unlock();
+                    }
+                    if (_message_type == 4) //列表
+                    {
+                    }
+                    break;
+                case 3: //指示
+
+                    if (_message_type == 1) //消息
+                    {
+                    }
+                    break;
+
+                default:
+                    break;
+                }
+            }
+            else
+            {
+                std::cout << "收到一个非法数据包！" << std::endl;
+                continue;
+            }
         }
     }
 
@@ -210,5 +281,29 @@ void Client::client_receive_process()
  */
 Client::~Client()
 {
+    return;
+}
+
+/***
+ * @Description: 打印输出的线程
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+void Client::print_process()
+{
+    while (1)
+    {
+        this->message_quene_mutex.lock();
+        while (this->message_quene.size() > 0)
+        {
+            std::string _str = this->message_quene.front();
+            std::cout << _str << std::endl;
+            this->message_quene.pop();
+            sleep(1);
+        }
+        this->message_quene_mutex.unlock();
+    }
+
     return;
 }

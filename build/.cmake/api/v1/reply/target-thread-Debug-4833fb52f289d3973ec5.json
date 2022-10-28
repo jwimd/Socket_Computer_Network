@@ -59,6 +59,12 @@
 			},
 			{
 				"command" : 1,
+				"file" : 1,
+				"line" : 9,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
 				"file" : 0,
 				"line" : 3,
 				"parent" : 0
@@ -94,6 +100,10 @@
 				},
 				{
 					"backtrace" : 7,
+					"path" : "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/./data/include"
+				},
+				{
+					"backtrace" : 8,
 					"path" : "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/./include"
 				}
 			],
@@ -102,6 +112,12 @@
 			[
 				0
 			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "data::@efda893aa850b0c0e61f"
 		}
 	],
 	"id" : "thread::@1994991b6c1bd8685afc",

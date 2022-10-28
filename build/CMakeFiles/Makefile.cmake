@@ -12,6 +12,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.16.3/CMakeSystem.cmake"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/CMakeLists.txt"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/CMakeLists.txt"
+  "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/CMakeLists.txt"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/CMakeLists.txt"
   "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
@@ -51,6 +52,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "thread/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "data/CMakeFiles/CMakeDirectoryInformation.cmake"
   "server/CMakeFiles/CMakeDirectoryInformation.cmake"
   "client/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
@@ -58,6 +60,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "thread/CMakeFiles/thread.dir/DependInfo.cmake"
+  "data/CMakeFiles/data.dir/DependInfo.cmake"
   "server/CMakeFiles/server.dir/DependInfo.cmake"
   "client/CMakeFiles/client.dir/DependInfo.cmake"
   )

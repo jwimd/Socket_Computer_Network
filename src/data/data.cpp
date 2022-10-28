@@ -6,13 +6,7 @@
  * @LastEditTime: 2022-10-05 16:34:54
  * @FilePath: /Socket_Computer_Network/src/include/data.hpp
  */
-
-#pragma once
-
-#include <stdio.h>
-#include <string.h>
-
-#include "type.h"
+#include "data.h"
 
 /***
  * @Description:
@@ -65,8 +59,8 @@ void pack_data(int32_t _require_type, int32_t _message_type, char_t *_msg, int32
             pack[15] = '4';
         }
         break;
-    case 2: //相应
-        pack[10] = '1';
+    case 2: //响应
+        pack[10] = '2';
         if (_message_type == 1)
         {
             pack[15] = '1';
@@ -137,10 +131,8 @@ bool_t unpack_data(int32_t &_require_type, int32_t &_message_type, char_t *_msg,
         muti *= 10;
     }
 
-    _msg = {0};
-
     for (int32_t i = 0; i < _msg_len; i++)
-        _msg_len = pack[30 + i];
+        _msg[i] = pack[30 + i];
 
     return true;
 }

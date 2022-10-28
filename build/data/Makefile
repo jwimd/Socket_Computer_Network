@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/data/CMakeFiles/progress.marks
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f CMakeFiles/Makefile2 data/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f CMakeFiles/Makefile2 data/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,70 +97,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f CMakeFiles/Makefile2 data/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f CMakeFiles/Makefile2 data/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named thread
+# Convenience name for target.
+data/CMakeFiles/data.dir/rule:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f CMakeFiles/Makefile2 data/CMakeFiles/data.dir/rule
+.PHONY : data/CMakeFiles/data.dir/rule
 
-# Build rule for target.
-thread: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 thread
-.PHONY : thread
+# Convenience name for target.
+data: data/CMakeFiles/data.dir/rule
 
-# fast build rule for target.
-thread/fast:
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
-.PHONY : thread/fast
-
-#=============================================================================
-# Target rules for targets named data
-
-# Build rule for target.
-data: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 data
 .PHONY : data
 
 # fast build rule for target.
 data/fast:
-	$(MAKE) -f data/CMakeFiles/data.dir/build.make data/CMakeFiles/data.dir/build
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f data/CMakeFiles/data.dir/build.make data/CMakeFiles/data.dir/build
 .PHONY : data/fast
 
-#=============================================================================
-# Target rules for targets named server
+data.o: data.cpp.o
 
-# Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 server
-.PHONY : server
+.PHONY : data.o
 
-# fast build rule for target.
-server/fast:
-	$(MAKE) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/build
-.PHONY : server/fast
+# target to build an object file
+data.cpp.o:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f data/CMakeFiles/data.dir/build.make data/CMakeFiles/data.dir/data.cpp.o
+.PHONY : data.cpp.o
 
-#=============================================================================
-# Target rules for targets named client
+data.i: data.cpp.i
 
-# Build rule for target.
-client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 client
-.PHONY : client
+.PHONY : data.i
 
-# fast build rule for target.
-client/fast:
-	$(MAKE) -f client/CMakeFiles/client.dir/build.make client/CMakeFiles/client.dir/build
-.PHONY : client/fast
+# target to preprocess a source file
+data.cpp.i:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f data/CMakeFiles/data.dir/build.make data/CMakeFiles/data.dir/data.cpp.i
+.PHONY : data.cpp.i
+
+data.s: data.cpp.s
+
+.PHONY : data.s
+
+# target to generate assembly for a file
+data.cpp.s:
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(MAKE) -f data/CMakeFiles/data.dir/build.make data/CMakeFiles/data.dir/data.cpp.s
+.PHONY : data.cpp.s
 
 # Help Target
 help:
@@ -170,10 +160,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... thread"
 	@echo "... data"
-	@echo "... server"
-	@echo "... client"
+	@echo "... data.o"
+	@echo "... data.i"
+	@echo "... data.s"
 .PHONY : help
 
 
@@ -185,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

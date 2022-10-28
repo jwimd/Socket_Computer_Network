@@ -95,6 +95,9 @@ client/client: client/CMakeFiles/client.dir/client.cpp.o
 client/client: client/CMakeFiles/client.dir/main.cpp.o
 client/client: client/CMakeFiles/client.dir/build.make
 client/client: thread/libthread.a
+client/client: data/libdata.a
+client/client: thread/libthread.a
+client/client: data/libdata.a
 client/client: client/CMakeFiles/client.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable client"
 	cd /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/client && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)

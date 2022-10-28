@@ -84,9 +84,9 @@ void Server::main_thread_process()
         struct sockaddr_in client_addr;
         socklen_t sock_len = sizeof(client_addr);
 
-        if (client_file_description = accept(this->main_thread->get_file_description(), (sockaddr *)&client_addr, &sock_len) != -1) // accept接受客户端请求
+        if ((client_file_description = accept(this->main_thread->get_file_description(), (sockaddr *)&client_addr, &sock_len)) != -1) // accept接受客户端请求
         {
-            std::cout << "收到请求" << std::endl;
+            std::cout << "主线程：收到请求" << std::endl;
 
             this->client_fd.push_back(client_file_description);
             this->client_addr.push_back(client_addr);
@@ -101,7 +101,7 @@ void Server::main_thread_process()
     return;
 }
 
-/*** 
+/***
  * @Description: 服务端子线程函数
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
@@ -111,14 +111,31 @@ void Server::server_sub_process()
 {
     char_t *msg = NULL;
     int32_t msg_len = MSG_LEN;
-    while(1)
+
+    int32_t _file_description = this->sub_thread_group[std::this_thread::get_id()]->get_file_description();
+
+    char_t _pack[MSG_LEN] = {0}; //数据包
+
+    int32_t _require_type = 2;
+    int32_t _message_type = 3;
+    std::string _msg = "来自【服务端】的消息：你好!欢迎连接服务端!";
+
+    pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
+
+    if (send(_file_description, _pack, MSG_LEN, 0) != -1)
+        std::cout << "线程" << std::this_thread::get_id() << "：发送数据包成功！" << std::endl;
+    else
+        std::cout << "线程" << std::this_thread::get_id() << "：发送数据包失败！" << std::endl;
+
+
+    while (1)
     {
-        if (recv(this->sub_thread_group[std::this_thread::get_id()]->get_file_description(), msg, msg_len, 0) == -1)
+
+        if (recv(_file_description, msg, msg_len, 0) == -1)
         {
-            std::cout << "在接收数据包时发生错误！" << std::endl;
             continue;
         }
-        
+
         else
         {
             std::cout << msg << std::endl;

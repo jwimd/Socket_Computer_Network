@@ -20,7 +20,7 @@
  */
 int32_t main(int32_t argc, char_t *argv[])
 {
-    Client my_client(AF_INET, SOCK_STREAM, IPPROTO_TCP); //启动socket服务
+    Client my_client(AF_INET, SOCK_STREAM, 0); //启动socket服务
     Client *p_client = &my_client;
 
     if (p_client->is_error())

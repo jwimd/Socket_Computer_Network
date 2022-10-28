@@ -819,7 +819,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "4"
+			"value" : "5"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1254,6 +1254,18 @@
 			"value" : "[TRUE][v()]"
 		},
 		{
+			"name" : "data_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;thread;"
+		},
+		{
 			"name" : "socket_project_BINARY_DIR",
 			"properties" : 
 			[
@@ -1276,6 +1288,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src"
+		},
+		{
+			"name" : "thread_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;data;"
 		}
 	],
 	"kind" : "cache",

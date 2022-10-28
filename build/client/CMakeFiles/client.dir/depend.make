@@ -3,11 +3,13 @@
 
 client/CMakeFiles/client.dir/client.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/client.cpp
 client/CMakeFiles/client.dir/client.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/client.h
+client/CMakeFiles/client.dir/client.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/data.h
 client/CMakeFiles/client.dir/client.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
 client/CMakeFiles/client.dir/client.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/include/thread.h
 
 client/CMakeFiles/client.dir/main.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/client.h
 client/CMakeFiles/client.dir/main.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp
+client/CMakeFiles/client.dir/main.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/data.h
 client/CMakeFiles/client.dir/main.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
 client/CMakeFiles/client.dir/main.cpp.o: /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/include/thread.h
 

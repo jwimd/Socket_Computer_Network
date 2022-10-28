@@ -3,6 +3,9 @@
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread/CMakeFiles/rebuild_cache.dir
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread/CMakeFiles/edit_cache.dir
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/thread/CMakeFiles/thread.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/data/CMakeFiles/rebuild_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/data/CMakeFiles/edit_cache.dir
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/data/CMakeFiles/data.dir
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server/CMakeFiles/rebuild_cache.dir
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server/CMakeFiles/edit_cache.dir
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/build/server/CMakeFiles/server.dir

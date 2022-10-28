@@ -21,6 +21,8 @@ vector
 -
 map
 -
+queue
+-
 strings.h
 -
 unistd.h
@@ -41,12 +43,16 @@ type.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/type.h
 thread.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/thread.h
+data.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/data.h
 
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/data.h
+stdio.h
+-
+string.h
+-
 type.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/type.h
-client.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/client.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/type.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/include/type.h
 
