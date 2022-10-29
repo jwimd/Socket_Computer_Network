@@ -40,6 +40,8 @@ Client::Client(int32_t _domain, int32_t _type, int32_t _protocol) : domain(_doma
 
     this->is_connected = false;
 
+    this->close_sign = false;
+
     this->main_thread_run(_file_description);
 
     return;
@@ -87,6 +89,14 @@ void Client::main_thread_process()
                 int32_t _opera_code = 0;
                 _opera_code = fgetc(stdin) - '0';
 
+                char_t _pack[MSG_LEN] = {0}; //数据包
+
+                int32_t _require_type = 0;
+                int32_t _message_type = 0;
+
+                std::string _msg = "";
+                std::string _clid = "";
+
                 switch (_opera_code)
                 {
                 case 1:
@@ -99,8 +109,52 @@ void Client::main_thread_process()
                 case 4:
                     break;
                 case 5:
+
+                    _require_type = 1;
+                    _message_type = 4;
+
+                    pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
+
+                    if (send(this->file_description, _pack, MSG_LEN, 0) != -1)
+                        std::cout << "成功向服务器请求客户端列表" << std::endl;
+                    else
+                    {
+                        std::cout << "请求服务器失败" << std::endl;
+                        std::cout << strerror(errno) << std::endl;
+                    }
+
+                    sleep(SLEEP_TIME);
+
+                    this->meum_print();
                     break;
                 case 6:
+
+                    std::cout << "向客户端发送消息" << std::endl;
+                    std::cout << std::endl;
+
+                    std::cout << "输入客户端id：" << std::endl;
+                    std::cin >> _clid;
+                    std::cout << "输入消息内容：" << std::endl;
+                    std::cin >> _msg;
+
+                    _msg = _clid + "|" + _msg;
+
+                    _require_type = 3;
+                    _message_type = 1;
+
+                    pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
+
+                    if (send(this->file_description, _pack, MSG_LEN, 0) != -1)
+                        std::cout << "成功向服务器指示发送消息到客户端" << std::endl;
+                    else
+                    {
+                        std::cout << "请求服务器失败" << std::endl;
+                        std::cout << strerror(errno) << std::endl;
+                    }
+
+                    sleep(SLEEP_TIME);
+
+                    this->meum_print();
                     break;
                 case 7:
                     break;
@@ -150,12 +204,17 @@ void Client::main_thread_process()
             std::string _str = this->message_quene.front();
             std::cout << _str << std::endl;
             this->message_quene.pop();
-            sleep(SLEEP_TIME);
         }
         this->message_quene_mutex.unlock();
 
         if (this->error_sign)
             break;
+
+        if (this->close_sign)
+        {
+            this->close_connent();
+            this->close_sign = false;
+        }
 
         // sleep(SLEEP_TIME);
     }
@@ -207,13 +266,13 @@ void Client::connect_to_server()
  */
 void Client::client_receive_process()
 {
-    char_t _pack[MSG_LEN] = {0}; //数据包
     int32_t _msg_len = MSG_LEN;
 
     int32_t _file_description = this->sub_thread_group[std::this_thread::get_id()]->get_file_description();
     while (1)
     {
-
+        char_t _pack[MSG_LEN] = {0}; //数据包
+        int32_t _msg_len = MSG_LEN;
         if (recv(_file_description, _pack, _msg_len, 0) == -1)
         {
             std::cout << "在接收数据包时发生错误！" << std::endl;
@@ -263,12 +322,97 @@ void Client::client_receive_process()
                     }
                     if (_message_type == 4) //列表
                     {
+
+                        this->message_quene_mutex.lock();
+                        int32_t i = 0;
+                        std::string sub_str = "";
+
+                        for (int32_t j = 0; j < LIST_WIDTH + 4; j++)
+                            sub_str += '-';
+                        message_quene.push(sub_str);
+
+                        sub_str = "";
+
+                        sub_str += '|';
+                        sub_str += "id";
+                        for (int32_t j = 0; j < LIST_WIDTH / 3 - 2; j++)
+                            sub_str += ' ';
+                        sub_str += '|';
+                        sub_str += "addr";
+                        for (int32_t j = 0; j < LIST_WIDTH / 3 - 4; j++)
+                            sub_str += ' ';
+                        sub_str += '|';
+                        sub_str += "port";
+                        for (int32_t j = 0; j < LIST_WIDTH / 3 - 4; j++)
+                            sub_str += ' ';
+                        sub_str += '|';
+                        message_quene.push(sub_str);
+
+                        sub_str = "";
+                        for (int32_t j = 0; j < LIST_WIDTH + 4; j++)
+                            sub_str += '-';
+                        message_quene.push(sub_str);
+
+                        sub_str = '|';
+
+                        int32_t k = 0;
+
+                        while (i < _msg_str.size())
+                        {
+                            if (i == _msg_str.size() - 1)
+                            {
+                                for (1; k < LIST_WIDTH / 3; k++)
+                                    sub_str += ' ';
+                                k = 0;
+                                sub_str += "|";
+                            }
+                            else if (_msg_str[i] == 'j' || _msg_str[i] == 'k')
+                            {
+                                for (1; k < LIST_WIDTH / 3; k++)
+                                    sub_str += ' ';
+                                k = 0;
+                                sub_str += '|';
+                            }
+                            else if (_msg_str[i] == 'l')
+                            {
+                                for (1; k < LIST_WIDTH / 3; k++)
+                                    sub_str += ' ';
+                                k = 0;
+                                sub_str += "|\n|";
+                            }
+                            else
+                            {
+                                sub_str += _msg_str[i];
+                                k++;
+                            }
+                            i++;
+                        }
+                        message_quene.push(sub_str);
+
+                        sub_str = "";
+                        for (int32_t j = 0; j < LIST_WIDTH + 4; j++)
+                            sub_str += '-';
+                        message_quene.push(sub_str);
+
+                        this->message_quene_mutex.unlock();
                     }
                     break;
                 case 3: //指示
 
                     if (_message_type == 1) //消息
                     {
+                    }
+                    if (_message_type == 2) //服务端断开
+                    {
+                        this->message_quene_mutex.lock();
+                        this->message_quene.push(_msg);
+                        this->message_quene_mutex.unlock();
+
+                        this->close_sign = true;
+                    }
+                    if (_message_type == 3) //套接字
+                    {
+                        this->con_file_description = std::stoi(_msg_str);
                     }
                     break;
 
@@ -278,6 +422,7 @@ void Client::client_receive_process()
             }
             else
             {
+
                 std::string _msg = "收到一个非法数据包！";
 
                 this->message_quene_mutex.lock();
@@ -353,7 +498,7 @@ void Client::close_connent()
     this->file_description = _file_description;
 
     this->server_addr = "";
-    this->server_port = "";https://beej-zhtw-gitbook.netdpi.net/system_call_huo_bust/connectff0c_hei_ff01_ni_hao_3002
+    this->server_port = "";
 
     std::cout << "服务器连接已断开" << std::endl;
     this->is_connected = false;
@@ -372,6 +517,7 @@ void Client::meum_print()
         std::cout << "当前状态：已连接服务端" << std::endl;
         std::cout << "地址:" << this->server_addr << std::endl;
         std::cout << "端口号:" << this->server_port << std::endl;
+        //std::cout << "客户端ID:" << this->con_file_description << std::endl;
         std::cout << std::endl;
         std::cout << "操作:" << std::endl;
         std::cout << "[1] 连接服务端" << std::endl;

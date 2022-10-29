@@ -32,7 +32,7 @@ void pack_data(int32_t _require_type, int32_t _message_type, char_t *_msg, int32
     for (int32_t i = PACK_LENGTH - TAIL_LENGTH; i < PACK_LENGTH; i++)
         pack[i] = TAIL_SYM;
 
-    for (int32_t i = 0; i < MEG_LENGTH_AREA; i++)
+    for (int32_t i = 0; i <  strlen(_msg_len_str); i++)
         pack[i + MEG_LENGTH_ADD] = _msg_len_str[i];
 
     for (int32_t i = 0; i < _msg_len; i++)

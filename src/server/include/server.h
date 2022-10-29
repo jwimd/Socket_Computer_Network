@@ -16,6 +16,7 @@
 #include <map>
 #include <queue>
 #include <mutex>
+#include <algorithm>
 
 #include <strings.h>
 #include <unistd.h>
@@ -34,6 +35,7 @@
 #include "data.h"
 
 #define DEFAULT_CLOSE_ID 0
+
 
 class Server
 {
@@ -72,6 +74,8 @@ protected:
 
     bool_t error_sign; //指示Server类出现问题的标志
 
+    bool_t exit_sign; //指示服务器进行关闭准备的状态
+
     void main_thread_run(int32_t _file_description);
 
     void main_thread_process();
@@ -79,4 +83,6 @@ protected:
     void server_sub_process();
 
     void thread_clean();
+
+    void close_all_connect();
 };

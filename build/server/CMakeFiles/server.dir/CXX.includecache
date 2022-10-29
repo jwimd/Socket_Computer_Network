@@ -31,6 +31,8 @@ queue
 -
 mutex
 -
+algorithm
+-
 strings.h
 -
 unistd.h
@@ -52,7 +54,7 @@ thread.h
 data.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/data.h
 
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
 server.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
 

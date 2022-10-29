@@ -34,6 +34,8 @@
 
 #include "data.h"
 
+#define LIST_WIDTH 30
+
 class Client
 {
 public:
@@ -49,6 +51,7 @@ protected:
     int32_t protocol; //指定协议
 
     int32_t file_description; //文件描述符
+    int32_t con_file_description;
 
     std::string server_addr; //服务地址
     std::string server_port; //端口
@@ -66,6 +69,8 @@ protected:
     std::mutex message_quene_mutex;        //线程锁
 
     std::thread::id connent_thread_id; //接受数据包的线程id
+
+    bool_t close_sign;
 
     void main_thread_run(int32_t _file_description);
 
