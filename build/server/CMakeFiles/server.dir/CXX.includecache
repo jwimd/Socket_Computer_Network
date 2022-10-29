@@ -73,6 +73,8 @@ sys/types.h
 -
 sys/socket.h
 -
+sys/ioctl.h
+-
 stdio.h
 -
 termios.h

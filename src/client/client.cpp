@@ -82,6 +82,8 @@ void Client::main_thread_process()
 
             if (kbhit())
             {
+                system("clear");
+
                 int32_t _opera_code = 0;
                 _opera_code = fgetc(stdin) - '0';
 
@@ -104,6 +106,7 @@ void Client::main_thread_process()
                     break;
 
                 default:
+                    this->meum_print();
                     break;
                 }
             }
@@ -113,13 +116,17 @@ void Client::main_thread_process()
         {
             if (kbhit())
             {
-                std::cout << std::endl;
+                system("clear");
+
                 int32_t _opera_code = 0;
                 _opera_code = fgetc(stdin) - '0';
 
                 switch (_opera_code)
                 {
                 case 1:
+                    std::cout << "连接服务端" << std::endl;
+                    std::cout << std::endl;
+
                     std::cout << "输入服务端地址：" << std::endl;
                     std::cin >> this->server_addr;
                     std::cout << "输入服务端端口：" << std::endl;
@@ -131,6 +138,7 @@ void Client::main_thread_process()
                     break;
 
                 default:
+                    this->meum_print();
                     break;
                 }
             }
@@ -142,11 +150,11 @@ void Client::main_thread_process()
             std::string _str = this->message_quene.front();
             std::cout << _str << std::endl;
             this->message_quene.pop();
-            sleep(1);
+            sleep(SLEEP_TIME);
         }
         this->message_quene_mutex.unlock();
 
-        // sleep(2);
+        // sleep(SLEEP_TIME);
     }
 
     return;
@@ -168,6 +176,7 @@ void Client::connect_to_server()
     {
         std::cout << "连接错误" << std::endl;
         std::cout << strerror(errno) << std::endl;
+        sleep(SLEEP_TIME);
         this->meum_print();
         return;
     }
@@ -175,12 +184,13 @@ void Client::connect_to_server()
     else
     {
         std::cout << "成功连接" << std::endl;
-        this->meum_print();
+        sleep(SLEEP_TIME);
         std::shared_ptr<Client_Thread> new_thread(new Client_Thread(this->file_description)); //创建子线程
         new_thread->run(*this, &Client::client_receive_process);
         this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
         this->connent_thread_id = new_thread->get_thread()->get_id();
         this->is_connected = true;
+        this->meum_print();
     }
 }
 
@@ -310,7 +320,7 @@ void Client::close_connent()
     this->is_connected = false;
 
     std::cout << "服务器连接已断开" << std::endl;
-    sleep(2);
+    sleep(SLEEP_TIME);
 
     this->meum_print();
 

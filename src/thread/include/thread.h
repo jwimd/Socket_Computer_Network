@@ -22,6 +22,7 @@
 #include "type.h"
 
 #define MSG_LEN 200
+#define SLEEP_TIME 1
 
 class Server;
 class Client;
