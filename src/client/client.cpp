@@ -192,7 +192,9 @@ void Client::connect_to_server()
         new_thread->run(*this, &Client::client_receive_process);
         this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
         this->connent_thread_id = new_thread->get_thread()->get_id();
+
         this->is_connected = true;
+
         this->meum_print();
     }
 }
@@ -224,7 +226,7 @@ void Client::client_receive_process()
             int32_t _message_type = 0;
 
             char_t _msg[MSG_LEN] = {0};
-            this->is_connected = false;
+
             std::string _msg_str = "";
 
             if (unpack_data(_require_type, _message_type, _msg, _msg_len, _pack))
@@ -351,9 +353,10 @@ void Client::close_connent()
     this->file_description = _file_description;
 
     this->server_addr = "";
-    this->server_port = "";
+    this->server_port = "";https://beej-zhtw-gitbook.netdpi.net/system_call_huo_bust/connectff0c_hei_ff01_ni_hao_3002
 
     std::cout << "服务器连接已断开" << std::endl;
+    this->is_connected = false;
     sleep(SLEEP_TIME);
 
     this->meum_print();

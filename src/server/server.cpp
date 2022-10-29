@@ -53,11 +53,15 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
     std::cout << "欢迎使用Jwimd Server套接字通信服务器" << std::endl;
     std::cout << "服务器成功启动！" << std::endl;
 
-    std::cout << "服务器地址："<< this->server_addr << std::endl;
-    std::cout << "服务器端口："<< this->server_port << std::endl;
+    std::cout << "服务器地址：" << this->server_addr << std::endl;
+    std::cout << "服务器端口：" << this->server_port << std::endl;
 
     std::cout << std::endl;
     std::cout << "按[P]断开所有连接并关闭服务器" << std::endl;
+
+    std::shared_ptr<Server_Thread>
+        new_thread(new Server_Thread(0)); //创建子线程
+    new_thread->run(*this, &Server::thread_clean);
 
     this->main_thread_run(file_description);
 
@@ -95,8 +99,6 @@ void Server::main_thread_process()
 
         if ((client_file_description = accept(this->main_thread->get_file_description(), (sockaddr *)&client_addr, &sock_len)) != -1) // accept接受客户端请求
         {
-            std::cout << "主线程：收到请求" << std::endl;
-
             std::shared_ptr<Server_Thread>
                 new_thread(new Server_Thread(client_file_description)); //创建子线程
             new_thread->run(*this, &Server::server_sub_process);
@@ -115,24 +117,26 @@ void Server::main_thread_process()
  */
 void Server::server_sub_process()
 {
-    char_t *msg = NULL;
+    char_t msg[MSG_LEN] = {0};
     int32_t msg_len = MSG_LEN;
 
     int32_t _file_description = this->sub_thread_group[std::this_thread::get_id()]->get_file_description();
 
     sockaddr_in _client_addr;
 
-    socklen_t *addrlen = 0;
+    socklen_t addrlen = 0;
 
-    if (getpeername(_file_description, (struct sockaddr *)&_client_addr, addrlen) == -1)
+    if (getpeername(_file_description, (struct sockaddr *)&_client_addr, &addrlen) == -1)
     {
         std::cout << "获取信息时出现问题" << std::endl;
         std::cout << strerror(errno) << std::endl;
         return;
     }
 
+    this->client_info_lock.lock();
     this->client_fd[std::this_thread::get_id()] = _file_description;
     this->client_addr[std::this_thread::get_id()] = _client_addr;
+    this->client_info_lock.unlock();
 
     char_t _pack[MSG_LEN] = {0}; //数据包
 
@@ -152,9 +156,12 @@ void Server::server_sub_process()
 
     while (1)
     {
+        bool_t is_close = false;
 
-        if (recv(_file_description, msg, msg_len, 0) == -1)
+        if (recv(_file_description, _pack, msg_len, 0) == -1)
         {
+            std::cout << "客户端" << std::this_thread::get_id() << "：接受数据包错误！" << std::endl;
+            std::cout << strerror(errno) << std::endl;
             continue;
         }
 
@@ -195,7 +202,7 @@ void Server::server_sub_process()
                     }
                     if (_message_type == 3) //消息
                     {
-                        std::cout << "客户端" << std::this_thread::get_id() << _msg << std::endl;
+                        std::cout << "客户端" << std::this_thread::get_id() << "：" << _msg << std::endl;
                     }
                     if (_message_type == 4) //列表
                     {
@@ -208,6 +215,9 @@ void Server::server_sub_process()
                     }
                     if (_message_type == 2) //消息
                     {
+                        close(_file_description);
+                        is_close = true;
+                        std::cout << "客户端" << std::this_thread::get_id() << "：socket连接关闭" << std::endl;
                     }
                     break;
 
@@ -217,13 +227,51 @@ void Server::server_sub_process()
             }
             else
             {
-                std::cout << "客户端" << std::this_thread::get_id() << "收到一个非法数据包！" << std::endl;
+                std::cout << "客户端" << std::this_thread::get_id() << "：收到一个非法数据包！" << std::endl;
                 continue;
             }
+        }
+
+        if (is_close)
+        {
+            this->close_quene_mutex.lock();
+            this->close_quene.push(std::this_thread::get_id());
+            this->close_quene_mutex.unlock();
+
+            break;
         }
     }
 
     return;
+}
+
+/***
+ * @Description: 清除线程数据
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+void Server::thread_clean()
+{
+    while (1)
+    {
+        this->close_quene_mutex.lock();
+        while (this->close_quene.size() > 0)
+        {
+            std::thread::id _id = this->close_quene.front();
+
+            this->client_addr.erase(_id);
+            this->client_fd.erase(_id);
+
+            this->sub_thread_group[_id]->get_thread()->join();
+            this->sub_thread_group.erase(_id);
+
+            this->close_quene.pop();
+
+            std::cout << "客户端" << _id << "：成功断开连接并清除数据" << std::endl;
+        }
+        this->close_quene_mutex.unlock();
+    }
 }
 
 /***

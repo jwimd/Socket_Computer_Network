@@ -33,6 +33,8 @@
 
 #include "data.h"
 
+#define DEFAULT_CLOSE_ID 0
+
 class Server
 {
 public:
@@ -60,10 +62,13 @@ protected:
 
     std::map<std::thread::id, int32_t> client_fd;
     std::map<std::thread::id, sockaddr_in> client_addr;
-    std::mutex client_info_lock;        //线程锁
+    std::mutex client_info_lock; //线程锁
 
     std::queue<std::string> message_quene; //通信队列
     std::mutex message_quene_mutex;        //线程锁
+
+    std::queue<std::thread::id> close_quene;
+    std::mutex close_quene_mutex;
 
     bool_t error_sign; //指示Server类出现问题的标志
 
@@ -72,4 +77,6 @@ protected:
     void main_thread_process();
 
     void server_sub_process();
+
+    void thread_clean();
 };
