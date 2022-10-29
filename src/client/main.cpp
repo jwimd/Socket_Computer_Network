@@ -26,6 +26,7 @@ int32_t main(int32_t argc, char_t *argv[])
     if (p_client->is_error())
     {
         std::cout << "套接字创建异常!" << std::endl;
+        std::cout << strerror(errno) << std::endl;
         return 0;
     }
 

@@ -154,6 +154,9 @@ void Client::main_thread_process()
         }
         this->message_quene_mutex.unlock();
 
+        if (this->error_sign)
+            break;
+
         // sleep(SLEEP_TIME);
     }
 
@@ -221,6 +224,7 @@ void Client::client_receive_process()
             int32_t _message_type = 0;
 
             char_t _msg[MSG_LEN] = {0};
+            this->is_connected = false;
             std::string _msg_str = "";
 
             if (unpack_data(_require_type, _message_type, _msg, _msg_len, _pack))
@@ -303,7 +307,7 @@ void Client::print_process()
 }
 
 /***
- * @Description: 关闭服务器连接，退出线程
+ * @Description: 关闭服务器连接，退出线程，创建一个新的socket，并发送给服务端指示自己将要断连
  * @Author: jwimd chenjiewei@zju.edu.cn
  * @msg: None
  * @return {*}
@@ -315,9 +319,39 @@ void Client::close_connent()
     _accept_thread->get_thread()->join();
     this->sub_thread_group.erase(this->connent_thread_id);
 
+    char_t _pack[MSG_LEN] = {0}; //数据包
+
+    int32_t _require_type = 3;
+    int32_t _message_type = 2;
+    std::string _msg = "";
+
+    pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
+
+    if (send(this->file_description, _pack, MSG_LEN, 0) != -1)
+        std::cout << "成功向服务器请求断开" << std::endl;
+    else
+    {
+        std::cout << "请求服务器失败" << std::endl;
+        std::cout << strerror(errno) << std::endl;
+        return;
+    }
+
     close(this->file_description);
 
-    this->is_connected = false;
+    this->error_sign = false;
+
+    int32_t _file_description = -1;
+
+    if ((_file_description = socket(this->domain, this->type, this->protocol)) == -1) //生成socket句柄
+    {
+        this->error_sign = true;
+        return;
+    }
+
+    this->file_description = _file_description;
+
+    this->server_addr = "";
+    this->server_port = "";
 
     std::cout << "服务器连接已断开" << std::endl;
     sleep(SLEEP_TIME);

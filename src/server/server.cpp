@@ -50,6 +50,15 @@ Server::Server(int32_t _domain, int32_t _type, int32_t _protocol, std::string _s
         return;
     }
 
+    std::cout << "欢迎使用Jwimd Server套接字通信服务器" << std::endl;
+    std::cout << "服务器成功启动！" << std::endl;
+
+    std::cout << "服务器地址："<< this->server_addr << std::endl;
+    std::cout << "服务器端口："<< this->server_port << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "按[P]断开所有连接并关闭服务器" << std::endl;
+
     this->main_thread_run(file_description);
 
     return;
@@ -88,9 +97,6 @@ void Server::main_thread_process()
         {
             std::cout << "主线程：收到请求" << std::endl;
 
-            this->client_fd.push_back(client_file_description);
-            this->client_addr.push_back(client_addr);
-
             std::shared_ptr<Server_Thread>
                 new_thread(new Server_Thread(client_file_description)); //创建子线程
             new_thread->run(*this, &Server::server_sub_process);
@@ -114,6 +120,20 @@ void Server::server_sub_process()
 
     int32_t _file_description = this->sub_thread_group[std::this_thread::get_id()]->get_file_description();
 
+    sockaddr_in _client_addr;
+
+    socklen_t *addrlen = 0;
+
+    if (getpeername(_file_description, (struct sockaddr *)&_client_addr, addrlen) == -1)
+    {
+        std::cout << "获取信息时出现问题" << std::endl;
+        std::cout << strerror(errno) << std::endl;
+        return;
+    }
+
+    this->client_fd[std::this_thread::get_id()] = _file_description;
+    this->client_addr[std::this_thread::get_id()] = _client_addr;
+
     char_t _pack[MSG_LEN] = {0}; //数据包
 
     int32_t _require_type = 2;
@@ -125,7 +145,10 @@ void Server::server_sub_process()
     if (send(_file_description, _pack, MSG_LEN, 0) != -1)
         std::cout << "客户端" << std::this_thread::get_id() << "：成功连接！" << std::endl;
     else
+    {
         std::cout << "客户端" << std::this_thread::get_id() << "：发送数据包失败！" << std::endl;
+        std::cout << strerror(errno) << std::endl;
+    }
 
     while (1)
     {
@@ -181,6 +204,9 @@ void Server::server_sub_process()
                 case 3: //指示
 
                     if (_message_type == 1) //消息
+                    {
+                    }
+                    if (_message_type == 2) //消息
                     {
                     }
                     break;
