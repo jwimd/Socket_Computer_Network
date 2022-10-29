@@ -23,6 +23,8 @@ map
 -
 queue
 -
+mutex
+-
 strings.h
 -
 unistd.h
@@ -68,6 +70,12 @@ functional
 sys/types.h
 -
 sys/socket.h
+-
+sys/ioctl.h
+-
+stdio.h
+-
+termios.h
 -
 type.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/include/type.h

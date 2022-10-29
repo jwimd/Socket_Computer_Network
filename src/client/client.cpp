@@ -68,90 +68,83 @@ void Client::main_thread_run(int32_t _file_description)
  */
 void Client::main_thread_process()
 {
-    std::shared_ptr<Client_Thread> new_thread(new Client_Thread(this->file_description)); //创建子线程
-    new_thread->run(*this, &Client::print_process);
-    this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
+    // std::shared_ptr<Client_Thread> new_thread(new Client_Thread(this->file_description)); //创建子线程
+    // new_thread->run(*this, &Client::print_process);
+    // this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
+
+    this->meum_print();
 
     while (1)
     {
-        system("clear"); //清空输出
 
         if (this->is_connected)
         {
-            std::cout << "当前状态：已连接服务端" << std::endl;
-            std::cout << "地址:" << this->server_addr << std::endl;
-            std::cout << "端口号:" << this->server_port << std::endl;
-            std::cout << std::endl;
-            std::cout << "操作:" << std::endl;
-            std::cout << "[1] 连接服务端" << std::endl;
-            std::cout << "[2] 断开连接" << std::endl;
-            std::cout << "[3] 获取时间" << std::endl;
-            std::cout << "[4] 获取名字" << std::endl;
-            std::cout << "[5] 获取客户端列表" << std::endl;
-            std::cout << "[6] 发送消息" << std::endl;
-            std::cout << "[7] 退出客户端" << std::endl;
 
-            int32_t _opera_code = 0;
-            std::cin >> _opera_code;
-
-            std::cout << std::endl;
-            std::cout << "消息：" << std::endl;
-
-            switch (_opera_code)
+            if (kbhit())
             {
-            case 1:
-                break;
-            case 2:
+                int32_t _opera_code = 0;
+                _opera_code = fgetc(stdin) - '0';
 
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
+                switch (_opera_code)
+                {
+                case 1:
+                    break;
+                case 2:
+                    this->close_connent();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
 
-            default:
-                std::cout << "未定义的命令！" << std::endl;
-                sleep(2);
-                break;
+                default:
+                    break;
+                }
             }
         }
 
         else
         {
-            std::cout << "当前状态：未连接服务端" << std::endl;
-            std::cout << std::endl;
-            std::cout << "操作:" << std::endl;
-            std::cout << "[1] 连接服务端" << std::endl;
-            std::cout << "[2] 退出客户端" << std::endl;
-
-            int32_t _opera_code = 0;
-            std::cin >> _opera_code;
-
-            switch (_opera_code)
+            if (kbhit())
             {
-            case 1:
-                std::cout << "输入服务端地址：" << std::endl;
-                std::cin >> this->server_addr;
-                std::cout << "输入服务端端口：" << std::endl;
-                std::cin >> this->server_port;
+                std::cout << std::endl;
+                int32_t _opera_code = 0;
+                _opera_code = fgetc(stdin) - '0';
 
-                this->connect_to_server();
-                break;
-            case 2:
-                break;
+                switch (_opera_code)
+                {
+                case 1:
+                    std::cout << "输入服务端地址：" << std::endl;
+                    std::cin >> this->server_addr;
+                    std::cout << "输入服务端端口：" << std::endl;
+                    std::cin >> this->server_port;
 
-            default:
-                std::cout << "未定义的命令！" << std::endl;
-                sleep(2);
-                break;
+                    this->connect_to_server();
+                    break;
+                case 2:
+                    break;
+
+                default:
+                    break;
+                }
             }
         }
+
+        this->message_quene_mutex.lock();
+        while (this->message_quene.size() > 0)
+        {
+            std::string _str = this->message_quene.front();
+            std::cout << _str << std::endl;
+            this->message_quene.pop();
+            sleep(1);
+        }
+        this->message_quene_mutex.unlock();
 
         // sleep(2);
     }
@@ -174,15 +167,19 @@ void Client::connect_to_server()
     if (connect(this->main_thread->get_file_description(), (struct sockaddr *)&this->sock_addr, sizeof(struct sockaddr)) == -1)
     {
         std::cout << "连接错误" << std::endl;
+        std::cout << strerror(errno) << std::endl;
+        this->meum_print();
         return;
     }
 
     else
     {
         std::cout << "成功连接" << std::endl;
+        this->meum_print();
         std::shared_ptr<Client_Thread> new_thread(new Client_Thread(this->file_description)); //创建子线程
         new_thread->run(*this, &Client::client_receive_process);
         this->sub_thread_group[new_thread->get_thread()->get_id()] = new_thread; //写入类中
+        this->connent_thread_id = new_thread->get_thread()->get_id();
         this->is_connected = true;
     }
 }
@@ -205,6 +202,7 @@ void Client::client_receive_process()
         if (recv(_file_description, _pack, _msg_len, 0) == -1)
         {
             std::cout << "在接收数据包时发生错误！" << std::endl;
+            std::cout << strerror(errno) << std::endl;
             continue;
         }
         else
@@ -234,7 +232,7 @@ void Client::client_receive_process()
                     {
                     }
                     break;
-                case 2: //响应
+                case 2: //响应scanKeyboard
                     if (_message_type == 1)
                     {
                     }
@@ -264,23 +262,16 @@ void Client::client_receive_process()
             }
             else
             {
-                std::cout << "收到一个非法数据包！" << std::endl;
+                std::string _msg = "收到一个非法数据包！";
+
+                this->message_quene_mutex.lock();
+                this->message_quene.push(_msg);
+                this->message_quene_mutex.unlock();
                 continue;
             }
         }
     }
 
-    return;
-}
-
-/***
- * @Description: Client类析构函数
- * @Author: jwimd chenjiewei@zju.edu.cn
- * @msg: None
- * @return {*}
- */
-Client::~Client()
-{
     return;
 }
 
@@ -294,16 +285,77 @@ void Client::print_process()
 {
     while (1)
     {
-        this->message_quene_mutex.lock();
-        while (this->message_quene.size() > 0)
-        {
-            std::string _str = this->message_quene.front();
-            std::cout << _str << std::endl;
-            this->message_quene.pop();
-            sleep(1);
-        }
-        this->message_quene_mutex.unlock();
+        this->meum_print();
+        sleep(15);
     }
 
+    return;
+}
+
+/***
+ * @Description: 关闭服务器连接，退出线程
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+void Client::close_connent()
+{
+    std::shared_ptr<Client_Thread> _accept_thread = this->sub_thread_group[this->connent_thread_id];
+    pthread_cancel(_accept_thread->get_thread()->native_handle());
+    _accept_thread->get_thread()->join();
+    this->sub_thread_group.erase(this->connent_thread_id);
+
+    close(this->file_description);
+
+    this->is_connected = false;
+
+    std::cout << "服务器连接已断开" << std::endl;
+    sleep(2);
+
+    this->meum_print();
+
+    return;
+}
+
+void Client::meum_print()
+{
+    system("clear");
+    if (this->is_connected)
+    {
+        std::cout << "当前状态：已连接服务端" << std::endl;
+        std::cout << "地址:" << this->server_addr << std::endl;
+        std::cout << "端口号:" << this->server_port << std::endl;
+        std::cout << std::endl;
+        std::cout << "操作:" << std::endl;
+        std::cout << "[1] 连接服务端" << std::endl;
+        std::cout << "[2] 断开连接" << std::endl;
+        std::cout << "[3] 获取时间" << std::endl;
+        std::cout << "[4] 获取名字" << std::endl;
+        std::cout << "[5] 获取客户端列表" << std::endl;
+        std::cout << "[6] 发送消息" << std::endl;
+        std::cout << "[7] 退出客户端" << std::endl;
+    }
+
+    else
+    {
+        std::cout << "当前状态：未连接服务端" << std::endl;
+        std::cout << std::endl;
+        std::cout << "操作:" << std::endl;
+        std::cout << "[1] 连接服务端" << std::endl;
+        std::cout << "[2] 退出客户端" << std::endl;
+    }
+
+    std::cout << std::endl;
+    std::cout << "消息：" << std::endl;
+}
+
+/***
+ * @Description: Client类析构函数
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @return {*}
+ */
+Client::~Client()
+{
     return;
 }

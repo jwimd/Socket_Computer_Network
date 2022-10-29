@@ -14,6 +14,8 @@
 #include <thread>
 #include <vector>
 #include <map>
+#include <queue>
+#include <mutex>
 
 #include <strings.h>
 #include <unistd.h>
@@ -58,6 +60,9 @@ protected:
 
     std::vector<int32_t> client_fd;
     std::vector<sockaddr_in> client_addr;
+
+    std::queue<std::string> message_quene; //通信队列
+    std::mutex message_quene_mutex;        //线程锁
 
     bool_t error_sign; //指示Server类出现问题的标志
 

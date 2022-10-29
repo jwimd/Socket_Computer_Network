@@ -27,6 +27,10 @@ vector
 -
 map
 -
+queue
+-
+mutex
+-
 strings.h
 -
 unistd.h
@@ -48,6 +52,10 @@ thread.h
 data.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/data.h
 
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
+server.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
+
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
 server.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
@@ -64,6 +72,10 @@ functional
 sys/types.h
 -
 sys/socket.h
+-
+stdio.h
+-
+termios.h
 -
 type.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/thread/include/type.h

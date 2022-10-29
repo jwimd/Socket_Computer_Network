@@ -15,6 +15,9 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <termios.h>
 
 #include "type.h"
 
@@ -66,3 +69,5 @@ public:
 protected:
     int32_t file_description; // 该线程所控制的socket文件描述符
 };
+
+bool kbhit();

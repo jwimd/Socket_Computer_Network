@@ -123,10 +123,9 @@ void Server::server_sub_process()
     pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
 
     if (send(_file_description, _pack, MSG_LEN, 0) != -1)
-        std::cout << "线程" << std::this_thread::get_id() << "：发送数据包成功！" << std::endl;
+        std::cout << "客户端" << std::this_thread::get_id() << "：成功连接！" << std::endl;
     else
-        std::cout << "线程" << std::this_thread::get_id() << "：发送数据包失败！" << std::endl;
-
+        std::cout << "客户端" << std::this_thread::get_id() << "：发送数据包失败！" << std::endl;
 
     while (1)
     {
@@ -138,7 +137,63 @@ void Server::server_sub_process()
 
         else
         {
-            std::cout << msg << std::endl;
+            int32_t _msg_len = MSG_LEN;
+            int32_t _require_type = 0;
+            int32_t _message_type = 0;
+
+            char_t _msg[MSG_LEN] = {0};
+            std::string _msg_str = "";
+
+            if (unpack_data(_require_type, _message_type, _msg, _msg_len, _pack))
+            {
+                _msg_str = _msg;
+                switch (_require_type)
+                {
+                case 1:                     //请求
+                    if (_message_type == 1) //时间
+                    {
+                    }
+                    if (_message_type == 2) //名称
+                    {
+                    }
+                    if (_message_type == 3) //消息
+                    {
+                    }
+                    if (_message_type == 4) //列表
+                    {
+                    }
+                    break;
+                case 2: //响应
+                    if (_message_type == 1)
+                    {
+                    }
+                    if (_message_type == 2) //名称
+                    {
+                    }
+                    if (_message_type == 3) //消息
+                    {
+                        std::cout << "客户端" << std::this_thread::get_id() << _msg << std::endl;
+                    }
+                    if (_message_type == 4) //列表
+                    {
+                    }
+                    break;
+                case 3: //指示
+
+                    if (_message_type == 1) //消息
+                    {
+                    }
+                    break;
+
+                default:
+                    break;
+                }
+            }
+            else
+            {
+                std::cout << "客户端" << std::this_thread::get_id() << "收到一个非法数据包！" << std::endl;
+                continue;
+            }
         }
     }
 

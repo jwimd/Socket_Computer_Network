@@ -16,7 +16,6 @@
 #include <map>
 #include <queue>
 #include <mutex>
-#include <condition_variable>
 
 #include <strings.h>
 #include <unistd.h>
@@ -65,7 +64,8 @@ protected:
 
     std::queue<std::string> message_quene; //通信队列
     std::mutex message_quene_mutex;        //线程锁
-   
+
+    std::thread::id connent_thread_id; //接受数据包的线程id
 
     void main_thread_run(int32_t _file_description);
 
@@ -76,4 +76,8 @@ protected:
     void client_receive_process();
 
     void print_process();
+
+    void meum_print();
+
+    void close_connent();
 };
