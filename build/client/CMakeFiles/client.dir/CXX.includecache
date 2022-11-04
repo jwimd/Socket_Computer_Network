@@ -48,12 +48,6 @@ thread.h
 data.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/include/data.h
 
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/main.cpp
-type.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/type.h
-client.h
-/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/client/client.h
-
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/data/include/data.h
 stdio.h
 -
