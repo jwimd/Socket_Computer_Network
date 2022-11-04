@@ -100,6 +100,17 @@ void Client::main_thread_process()
                 switch (_opera_code)
                 {
                 case 1:
+                    this->close_connent();
+
+                    system("clear");
+                    std::cout << "连接服务端" << std::endl;
+                    std::cout << std::endl;
+
+                    std::cout << "输入服务端地址：" << std::endl;
+                    std::cin >> this->server_addr;
+                    std::cout << "输入服务端端口：" << std::endl;
+                    std::cin >> this->server_port;
+                    this->connect_to_server();
                     break;
                 case 2:
                     this->close_connent();
@@ -157,6 +168,9 @@ void Client::main_thread_process()
                     this->meum_print();
                     break;
                 case 7:
+                    this->close_connent();
+                    std::cout << "客户端退出！" << std::endl;
+                    exit(1);
                     break;
 
                 default:
@@ -189,6 +203,9 @@ void Client::main_thread_process()
                     this->connect_to_server();
                     break;
                 case 2:
+                    system("clear");
+                    std::cout << "客户端退出！" << std::endl;
+                    exit(1);
                     break;
 
                 default:
@@ -517,7 +534,7 @@ void Client::meum_print()
         std::cout << "当前状态：已连接服务端" << std::endl;
         std::cout << "地址:" << this->server_addr << std::endl;
         std::cout << "端口号:" << this->server_port << std::endl;
-        //std::cout << "客户端ID:" << this->con_file_description << std::endl;
+        // std::cout << "客户端ID:" << this->con_file_description << std::endl;
         std::cout << std::endl;
         std::cout << "操作:" << std::endl;
         std::cout << "[1] 连接服务端" << std::endl;

@@ -29,7 +29,7 @@ int32_t main(int32_t argc, char_t *argv[])
 {
     system("clear");
 
-    Server my_server(AF_INET, SOCK_STREAM, 0, "127.0.0.1", "1206", 5); //启动socket服务
+    Server my_server(AF_INET, SOCK_STREAM, 0, "127.0.0.1", "1205", 5); //启动socket服务
     Server *p_server = &my_server;
 
     if (p_server->is_error())
