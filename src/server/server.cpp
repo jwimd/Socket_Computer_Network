@@ -204,9 +204,42 @@ void Server::server_sub_process()
                 case 1:                     //请求
                     if (_message_type == 1) //时间
                     {
+                        std::cout << "客户端" << std::this_thread::get_id() << "：请求当前时间" << std::endl;
+
+                        _require_type = 2;
+                        _message_type = 3;
+                        _msg_str = "来自【服务端】的消息：当前时间为";
+
+                        std::string time = serialize_time_point(std::chrono::system_clock::now(), "Beijing: %Y-%m-%d %H:%M:%S");
+                        _msg_str += time;
+
+                        pack_data(_require_type, _message_type, (char_t *)_msg_str.data(), _msg_str.length(), _pack);
+
+                        if (send(_file_description, _pack, MSG_LEN, 0) != -1)
+                            std::cout << "客户端" << std::this_thread::get_id() << "：成功发送时间！" << std::endl;
+                        else
+                        {
+                            std::cout << "客户端" << std::this_thread::get_id() << "：发送数据包失败！" << std::endl;
+                            std::cout << strerror(errno) << std::endl;
+                        }
                     }
                     if (_message_type == 2) //名称
                     {
+                        std::cout << "客户端" << std::this_thread::get_id() << "：请求服务端信息" << std::endl;
+
+                        _require_type = 2;
+                        _message_type = 3;
+                        _msg_str = "来自【服务端】的消息：\n服务器名称：Jwimd Server\nip地址：" + this->server_addr + "\n端口号：" + this->server_port;
+
+                        pack_data(_require_type, _message_type, (char_t *)_msg_str.data(), _msg_str.length(), _pack);
+
+                        if (send(_file_description, _pack, MSG_LEN, 0) != -1)
+                            std::cout << "客户端" << std::this_thread::get_id() << "：成功发送服务端信息！" << std::endl;
+                        else
+                        {
+                            std::cout << "客户端" << std::this_thread::get_id() << "：发送数据包失败！" << std::endl;
+                            std::cout << strerror(errno) << std::endl;
+                        }
                     }
                     if (_message_type == 3) //消息
                     {
@@ -438,4 +471,22 @@ void Server::thread_clean()
 Server::~Server()
 {
     return;
+}
+
+/***
+ * @Description: time_point转string
+ * @Author: jwimd chenjiewei@zju.edu.cn
+ * @msg: None
+ * @param {time_point&} time
+ * @param {string&} format
+ * @return {*}
+ */
+std::string serialize_time_point(const std::chrono::_V2::system_clock::time_point &time, const std::string &format)
+{
+    std::time_t tt = std::chrono::system_clock::to_time_t(time);
+    //std::tm tm = *std::gmtime(&tt); // GMT (UTC)
+    std::tm tm = *std::localtime(&tt); //Locale time-zone, usually UTC by default.
+    std::stringstream ss;
+    ss << std::put_time(&tm, format.c_str());
+    return ss.str();
 }

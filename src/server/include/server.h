@@ -17,6 +17,10 @@
 #include <queue>
 #include <mutex>
 #include <algorithm>
+#include <ctime>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 
 #include <strings.h>
 #include <unistd.h>
@@ -35,7 +39,6 @@
 #include "data.h"
 
 #define DEFAULT_CLOSE_ID 0
-
 
 class Server
 {
@@ -86,3 +89,5 @@ protected:
 
     void close_all_connect();
 };
+
+std::string serialize_time_point(const std::chrono::_V2::system_clock::time_point &time, const std::string &format);

@@ -33,6 +33,14 @@ mutex
 -
 algorithm
 -
+ctime
+-
+chrono
+-
+iomanip
+-
+sstream
+-
 strings.h
 -
 unistd.h
@@ -55,6 +63,10 @@ data.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/include/data.h
 
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/main.cpp
+server.h
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
+
+/home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.cpp
 server.h
 /home/jwimd/Study/Computer_Network/Lab/Lab2/Socket_Computer_Network/src/server/server.h
 

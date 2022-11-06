@@ -116,8 +116,40 @@ void Client::main_thread_process()
                     this->close_connent();
                     break;
                 case 3:
+                    _require_type = 1;
+                    _message_type = 1;
+
+                    pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
+
+                    if (send(this->file_description, _pack, MSG_LEN, 0) != -1)
+                        std::cout << "成功向服务器请求当前时间" << std::endl;
+                    else
+                    {
+                        std::cout << "请求服务器失败" << std::endl;
+                        std::cout << strerror(errno) << std::endl;
+                    }
+
+                    sleep(SLEEP_TIME);
+
+                    this->meum_print();
                     break;
                 case 4:
+                    _require_type = 1;
+                    _message_type = 2;
+
+                    pack_data(_require_type, _message_type, (char_t *)_msg.data(), _msg.length(), _pack);
+
+                    if (send(this->file_description, _pack, MSG_LEN, 0) != -1)
+                        std::cout << "成功向服务器请求其信息" << std::endl;
+                    else
+                    {
+                        std::cout << "请求服务器失败" << std::endl;
+                        std::cout << strerror(errno) << std::endl;
+                    }
+
+                    sleep(SLEEP_TIME);
+
+                    this->meum_print();
                     break;
                 case 5:
 
