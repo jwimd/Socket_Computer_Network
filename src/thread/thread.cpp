@@ -65,6 +65,7 @@ Thread::~Thread()
  */
 Server_Thread::Server_Thread(int32_t _file_description) : file_description(_file_description)
 {
+    this->client_error = false;
     return;
 }
 

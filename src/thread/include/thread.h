@@ -55,6 +55,8 @@ public:
 
     int32_t get_file_description() { return this->file_description; }
 
+    bool_t client_error;
+
 protected:
     int32_t file_description; // 该线程所控制的socket文件描述符
 };

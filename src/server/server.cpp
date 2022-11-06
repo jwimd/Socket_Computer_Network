@@ -366,7 +366,9 @@ void Server::server_sub_process()
             }
             else
             {
-                std::cout << "客户端" << std::this_thread::get_id() << "：收到一个非法数据包！" << std::endl;
+                if(!this->sub_thread_group[std::this_thread::get_id()]->client_error)
+                    std::cout << "客户端" << std::this_thread::get_id() << "：收到一个非法数据包！客户端可能被强制关闭或网线被拔出" << std::endl;
+                this->sub_thread_group[std::this_thread::get_id()]->client_error = true;
                 continue;
             }
         }
